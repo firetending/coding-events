@@ -1,9 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="https://www.thymeleaf.org/">
-<head>
-    <meta charset="UTF-8"/>
-    <title>Create Event</title>
-</head>
+<head th:replace="fragments :: head"></head>
 <body>
 <h1>Create Event</h1>
 <form method="post" action="/events/create"> <!-- action could be left out since the form lives at the same path -->
