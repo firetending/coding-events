@@ -8,21 +8,19 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 @RequestMapping("events")
 public class EventController {
-    private static List<String> events = new ArrayList<>();
+    private static Map<String, String> events = new HashMap<>();
 
     //lives at /events
     @GetMapping
-    public String events(Model model) {
-//        events.add("Ice Cream Social");
-//        events.add("Cocktail Mixer");
-//        events.add("Hack-A-Thon");
-//        events.add("Brunch");
-        model.addAttribute("events",events);
+    public String displayAllEvents(Model model) {
+        model.addAttribute("events", events);
         return "events/index";
     }
 
@@ -34,8 +32,12 @@ public class EventController {
 
     //lives at /events/create
     @PostMapping("create")
-    public String createEvent(@RequestParam String eventName) {
-        events.add(eventName);
+    public String createEvent(@RequestParam String eventName, @RequestParam String eventDescription) {
+        String eventNameUnique = eventName;
+        for (int id=1; events.containsKey(eventNameUnique); id++) {
+            eventNameUnique = eventName +" "+ id;
+        }
+        events.put(eventNameUnique, eventDescription);
         return "redirect:"; //redirects to root of controller
     }
 }

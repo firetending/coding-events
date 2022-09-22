@@ -5,13 +5,21 @@
 <div th:replace="fragments :: navigation"></div>
 <h2>All Coding Events</h2>
 <p th:unless="${events} and ${events.size()}">No events!</p>
-<table class="table table-striped" th:if="${events} and ${events.size()}">
-    <thead><tr>
+<table class="table table-hover" th:if="${events} and ${events.size()}">
+    <thead>
+    <tr>
         <th>Name</th>
-    </tr></thead>
-    <tr th:each="event : ${events}">
-        <td th:text="${event}">EACH EVENT</td>
+        <th>Description</th>
+        <th>Location</th>
     </tr>
+    </thead>
+    <tbody>
+    <tr th:each="event : ${events}">
+        <td th:text="${event.getKey()}">EACH Event</td>
+        <td th:text="${event.getValue()}">EACH Event Description</td>
+        <td><span th:replace="fragments :: codingHubAddress" ></span></td>
+    </tr>
+    </tbody>
 </table>
 
 </body>
