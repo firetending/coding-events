@@ -3,14 +3,14 @@
 <head th:replace="fragments :: head"></head>
 <body class="container">
 <div th:replace="fragments :: navigation"></div>
-<h2>All Coding Events</h2>
+<h2 th:text="${title}"></h2>
 <p th:unless="${events} and ${events.size()}">No events!</p>
 <table class="table table-striped" th:if="${events} and ${events.size()}">
     <thead><tr>
         <th>Name</th>
     </tr></thead>
     <tr th:each="event : ${events}">
-        <td th:text="${event}">EACH EVENT</td>
+        <td th:text="${event.name}">EACH EVENT</td> <!--implicitly uses getName (name field is private) -->
     </tr>
 </table>
 
