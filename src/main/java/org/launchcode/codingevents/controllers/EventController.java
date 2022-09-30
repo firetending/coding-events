@@ -1,16 +1,10 @@
 package org.launchcode.codingevents.controllers;
 
-import org.launchcode.codingevents.data.EventData;
+import org.launchcode.codingevents.data.EventsData;
 import org.launchcode.codingevents.models.Event;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-
-import java.util.ArrayList;
-import java.util.List;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequestMapping("events")
@@ -24,7 +18,7 @@ public class EventController {
 //        events.add("Hack-A-Thon");
 //        events.add("Brunch");
         model.addAttribute("title", "All Events");
-        model.addAttribute("events", EventData.getAll());
+        model.addAttribute("events", EventsData.getAll());
         return "events/index";
     }
 
@@ -36,9 +30,28 @@ public class EventController {
 
     //lives at /events/create
     @PostMapping("create")
-    public String createEvent(@RequestParam String eventName, @RequestParam String eventDescription) {
-        EventData.add(new Event(eventName, eventDescription));
+    public String processCreateEvent(@ModelAttribute Event newEvent) {
+        if (!newEvent.getName().isEmpty()) {
+            EventsData.add(newEvent);
+        }
         return "redirect:"; //redirects to root of controller
+    }
+
+    @GetMapping("delete")
+    public String displayDeleteEventForm(Model model) {
+        model.addAttribute("title","Delete Events");
+        model.addAttribute("events", EventsData.getAll());
+        return "events/delete";
+    }
+
+    @PostMapping("delete")
+    public String processDeleteEvent(@RequestParam(required = false) int[] eventIds) {
+        if (eventIds!=null) {
+            for (int id : eventIds) {
+                EventsData.remove(id);
+            }
+        }
+        return "redirect:";
     }
 
 }

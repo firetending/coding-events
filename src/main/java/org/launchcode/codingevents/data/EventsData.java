@@ -2,12 +2,11 @@ package org.launchcode.codingevents.data;
 
 import org.launchcode.codingevents.models.Event;
 
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
-public class EventData {
+public class EventsData {
     private static final Map<Integer,Event> events = new HashMap();
 
     public static Collection<Event> getAll() {
@@ -22,7 +21,7 @@ public class EventData {
         events.put(newEvent.getId(),newEvent);
     }
 
-    public static void delete(int id) {
+    public static void remove(int id) {
         if (events.containsKey(id)) {
             events.remove(id);
         }
