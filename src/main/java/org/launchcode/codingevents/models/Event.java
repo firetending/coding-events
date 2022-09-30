@@ -1,19 +1,27 @@
 package org.launchcode.codingevents.models;
 
+import javax.validation.constraints.*;
 import java.util.Objects;
 
 public class Event {
     private int id;
     private static int nextId = 1;
+    @NotBlank
+    @Size(min=3,max=50,message="Name must be 3-50 characters long")
     private String name;
+    @Size(max=500,message="Description is too long! (max 500 characters")
     private String description;
+    @Email(message="Invalid email")
+    private String contactEmail;
 
 
-    public Event(String name, String description) {
+
+    public Event(String name, String description, String contactEmail) {
         this.id = nextId;
         nextId++;
         this.name = name;
         this.description = description;
+        this.contactEmail = contactEmail;
     }
 
     public int getId() {
@@ -34,6 +42,14 @@ public class Event {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public String getContactEmail() {
+        return contactEmail;
+    }
+
+    public void setContactEmail(String contactEmail) {
+        this.contactEmail = contactEmail;
     }
 
     @Override
