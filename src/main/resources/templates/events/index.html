@@ -10,11 +10,15 @@
         <th>ID</th>
         <th>Name</th>
         <th>Description</th>
+        <th></th>
     </tr></thead>
     <tr th:each="event : ${events}">
         <td th:text="${event.id}"></td>
         <td th:text="${event.name}">EACH EVENT</td> <!--implicitly uses getName (name field is private) -->
         <td th:text="${event.description}">EACH EVENT</td>
+        <td>
+            <a th:href="@{/events/edit/{id}(id=${event.id})}">Edit</a>
+        </td>
     </tr>
 </table>
 

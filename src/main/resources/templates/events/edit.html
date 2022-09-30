@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org/">
+<head th:replace="fragments :: head"></head>
+<body class="container">
+<div th:replace="fragments :: navigation"></div>
+<th:block th:unless="${event}">
+    <h2 th:text="${title}"></h2>
+    <p th:text="'No event exists with id='+${id}">Event does not exist</p>
+</th:block>
+<th:block th:if="${event}">
+  <h2 th:text="${title}+' &quot;'+${event.name}+'&quot;'"></h2>
+    <span th:text="'ID: '+${event.id}"></span>
+    <form method="post" th:action="@{/events/edit}">
+        <div class="form-group">
+            <input type="hidden" name="id" th:value="${event.id}"/>
+            <label>Name
+                <input class="form-control" type="text" name="name" th:placeholder="${event.name}"
+                       th:value="${event.name}"/>
+            </label><br>
+            <label>Description
+                <input class="form-control" type="text" name="description" th:placeholder="${event.description}"
+                       th:value="${event.description}"/>
+            </label>
+        </div>
+        <div class="form-group">
+            <input type="submit" value="Edit Event" class="btn btn-danger">
+        </div>
+    </form>
+</th:block>
+</body>
+</html>
