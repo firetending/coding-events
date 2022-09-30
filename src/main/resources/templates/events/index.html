@@ -8,9 +8,11 @@
 <table class="table table-striped" th:if="${events} and ${events.size()}">
     <thead><tr>
         <th>Name</th>
+        <th>Description</th>
     </tr></thead>
     <tr th:each="event : ${events}">
         <td th:text="${event.name}">EACH EVENT</td> <!--implicitly uses getName (name field is private) -->
+        <td th:text="${event.description}">EACH EVENT</td>
     </tr>
 </table>
 
