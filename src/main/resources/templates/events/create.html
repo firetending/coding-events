@@ -3,7 +3,8 @@
 <head th:replace="fragments :: head"></head>
 <body class="container">
 <div th:replace="fragments :: navigation"></div>
-<h2>Create Event</h2>
+<h2 th:text="${title}"></h2>
+<p th:text="${errorMsg}"></p>
 <form method="post" action="/events/create"> <!-- action could be left out since the form lives at the same path -->
     <div class="form-group">
         <label>Name
