@@ -11,12 +11,14 @@
         <th>Name</th>
         <th>Description</th>
         <th>Contact Email</th>
+        <th>Type</th>
     </tr></thead>
     <tr th:each="event : ${events}">
         <td th:text="${event.id}"></td>
         <td th:text="${event.name}">EACH EVENT</td> <!--implicitly uses getName (name field is private) -->
         <td th:text="${event.description}">EACH EVENT</td>
         <td th:text="${event.contactEmail}">EACH EVENT</td>
+        <td th:text="${event.type.displayName}">EACH EVENT</td>
     </tr>
 </table>
 
