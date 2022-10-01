@@ -6,20 +6,22 @@ import java.util.Objects;
 public class Event {
     private int id;
     private static int nextId = 1;
-    @NotBlank
+    @NotBlank(message = "Name is required")
     @Size(min=3,max=50,message="Name must be 3-50 characters long")
     private String name;
-    @Size(max=500,message="Description is too long! (max 500 characters")
+    @Size(max=500,message="Description is too long! (max 500 characters)")
     private String description;
-    @NotBlank
+    @NotBlank(message = "Email is required")
     @Email(message="Invalid email")
     private String contactEmail;
 
 
-
-    public Event(String name, String description, String contactEmail) {
+    public Event() {
         this.id = nextId;
         nextId++;
+    }
+    public Event(String name, String description, String contactEmail) {
+        this();
         this.name = name;
         this.description = description;
         this.contactEmail = contactEmail;

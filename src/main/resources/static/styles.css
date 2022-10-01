@@ -1,3 +1,7 @@
 body {
     color: purple;
 }
+
+.error {
+color: red;
+}
