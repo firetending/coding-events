@@ -26,7 +26,7 @@ public class EventController {
     @GetMapping("create")
     public String renderCreateEventForm(Model model) {
         model.addAttribute("title","Create Event");
-        model.addAttribute(new Event());
+//        model.addAttribute(new Event());
         model.addAttribute("categories", EventType.values());
         return "events/create";
     }
