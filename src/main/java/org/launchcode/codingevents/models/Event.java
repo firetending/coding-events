@@ -24,7 +24,7 @@ public class Event {
     private String contactEmail;
     private EventType type;
 
-    protected Event() {} //for persistent class
+    public Event() {} //for persistent class
 
     public Event(String name, String description, String contactEmail, EventType type) {
         this.name = name;
